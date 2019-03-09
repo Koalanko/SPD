@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int IleZadan;
+int IleMaszyn;
+void WczytanieDanych(int maszyna1[100],int maszyna2[100], int maszyna3[100])
+{
+	
+	ifstream data("data.txt");
+	data >> IleZadan;
+	
+	data >> IleMaszyn;
+	
+	for(int i=0;i<IleZadan;i++)
+	data>>maszyna1[i]>>maszyna2[i]>>maszyna3[i];
+}
+void Permutacje(int maszyna1[100],int maszyna2[100],int maszyna3[100])
+{
+	int czasC=0,czas1=0,czas2=0,roznica,opoznienie=0;
+	
+	for(int i=0;i<IleZadan;i++)
+	{
+		czas2=czas1+maszyna2[i-1];
+		czas1+=maszyna1[i];
+		roznica=czas2-czas1;
+		opoznienie+=roznica;
+		if(opoznienie<0)
+		opoznienie=0;
+		
+		
+		//if(i==IleZadan-1)
+		//opoznienie+=maszyna2[i];
+		
+	}
+	cout<<czas1<<endl;
+	cout<<czas1+opoznienie+maszyna2[IleZadan-1]<<endl;
+	
+	
+	
+	
+}
+int main()
+{
+	int a[100],b[100],c[100];
+	WczytanieDanych(a,b,c);
+
+	Permutacje(a,b,c);
+
+}
